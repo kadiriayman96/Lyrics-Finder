@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 import { routerArtist } from "../src/routes/artistRouter";
 import { routerLogin } from "../src/routes/authRouter";
+import { routerRegister } from "../src/routes/registerRouter";
 
 
 dotenv.config();
@@ -21,6 +22,7 @@ mongoose
 //routers
 app.use("/artists", routerArtist);
 app.use(routerLogin);
+app.use(routerRegister);
 
 //error router 404
 app.use((req, res, next) => {
