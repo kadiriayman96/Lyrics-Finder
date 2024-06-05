@@ -1,4 +1,4 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document } from "mongoose";
 
 interface Song extends Document {
   genre: string;
@@ -16,4 +16,4 @@ const songSchema = new Schema<Song>({
   singer: { type: String, required: true },
 });
 
-export default model<Song>('Song', songSchema);
+export default model<Song>("Song", songSchema);

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 import { routerArtist } from "../src/routes/artistRouter";
+import { routerSong } from "../src/routes/songRouter";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT;
 const db_uri = process.env.MONGO_URI || "";
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 mongoose
   .connect(db_uri, {})
   .then(() => console.log("MongoDB connected .."))
@@ -18,6 +20,7 @@ mongoose
 
 //routers
 app.use("/artists", routerArtist);
+app.use("/songs", routerSong);
 
 //error router 404
 app.use((req, res, next) => {
