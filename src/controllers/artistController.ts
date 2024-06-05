@@ -126,9 +126,7 @@ const deleteArtist = async (req: Request, res: Response) => {
         error: new NotFoundError("Artist not found !!").message,
       });
     }
-
     deleteImage(artist);
-
     return res.status(StatusCodes.OK).json(artist);
   } catch (error: any) {
     console.error(error);
