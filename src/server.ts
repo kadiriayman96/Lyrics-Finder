@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 import { routerArtist } from "../src/routes/artistRouter";
 import { routerSong } from "../src/routes/songRouter";
+import { routerAuth } from "../src/routes/authRouter";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ mongoose
   .catch((err) => console.error("MongoDB connection error :", err));
 
 //routers
+app.use("/", routerAuth);
 app.use("/artists", routerArtist);
 app.use("/songs", routerSong);
 
