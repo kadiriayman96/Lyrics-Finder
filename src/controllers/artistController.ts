@@ -9,6 +9,7 @@ import {
   NotFoundError,
   ValidationError,
 } from "../errors/index";
+import deleteImage from "../utils/cloudinaryImageDelete";
 
 dotenv.config();
 
@@ -36,7 +37,8 @@ const getAllArtists = async (req: Request, res: Response) => {
       .json({ error: error.message });
   }
 };
-const getOneArtist = async (req: Request, res: Response) => {
+
+const getArtistByName = async (req: Request, res: Response) => {
   try {
     let { firstName, lastName } = req.params;
 
@@ -48,11 +50,16 @@ const getOneArtist = async (req: Request, res: Response) => {
 
     let artist;
     if (firstName && lastName) {
-      artist = await Artist.find({ firstName, lastName });
+      artist = await Artist.find({
+        $or: [
+          { firstName: new RegExp(firstName, "i") },
+          { lastName: new RegExp(lastName, "i") },
+        ],
+      });
     } else if (firstName) {
-      artist = await Artist.find({ firstName });
+      artist = await Artist.find({ firstName: new RegExp(firstName, "i") });
     } else if (lastName) {
-      artist = await Artist.find({ lastName });
+      artist = await Artist.find({ lastName: new RegExp(lastName, "i") });
     }
 
     if (!artist) {
@@ -91,7 +98,7 @@ const addArtist = async (req: Request, res: Response) => {
     const result = await cloudinary.v2.uploader.upload(image.path);
     const pictureUrl = result.secure_url;
 
-    const newArtist = new Artist({
+    const newArtist = await Artist.create({
       firstName,
       lastName,
       pictureUrl,
@@ -100,8 +107,8 @@ const addArtist = async (req: Request, res: Response) => {
       birthCity,
       diedDate: diedDate ? diedDate : null,
     });
-    const artist = await newArtist.save();
-    return res.status(StatusCodes.CREATED).json(artist);
+
+    return res.status(StatusCodes.CREATED).json(newArtist);
   } catch (error: any) {
     console.error(error);
     return res
@@ -110,4 +117,89 @@ const addArtist = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllArtists, getOneArtist, addArtist };
+const deleteArtist = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.params;
+    const artist = await Artist.findByIdAndDelete(_id);
+    if (!artist) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        error: new NotFoundError("Artist not found !!").message,
+      });
+    }
+
+    deleteImage(artist);
+
+    return res.status(StatusCodes.OK).json(artist);
+  } catch (error: any) {
+    console.error(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+  }
+};
+
+const updateArtist = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.params;
+    const { firstName, lastName, genre, bornDate, birthCity, diedDate } =
+      req.body;
+    const image = req.file;
+    if (!_id) {
+      return res.status(StatusCodes.CONFLICT).json({
+        error: new ValidationError("Artist Id is required !!").message,
+      });
+    }
+    const existingArtist = await Artist.findById(_id);
+    if (!existingArtist) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        error: new NotFoundError("Artist not found !!").message,
+      });
+    }
+    if (!firstName && !lastName && !genre && !bornDate && !birthCity) {
+      return res.status(StatusCodes.CONFLICT).json({
+        error: new ValidationError("Fields are required !!").message,
+      });
+    }
+    if (!image) {
+      return res.status(StatusCodes.CONFLICT).json({
+        error: new ValidationError("Image File is required !!").message,
+      });
+    }
+
+    // Upload image to Cloudinary
+    const result = await cloudinary.v2.uploader.upload(image.path);
+    const pictureUrl = result.secure_url;
+
+    //delete previous image
+    deleteImage(existingArtist);
+
+    const updatedArtist = await Artist.findByIdAndUpdate(
+      _id,
+      {
+        firstName,
+        lastName,
+        pictureUrl,
+        genre,
+        bornDate, // YYYY-MM-DD
+        birthCity,
+        diedDate: diedDate ? diedDate : null,
+      },
+
+      { new: true }
+    );
+    return res.status(StatusCodes.OK).json(updatedArtist);
+  } catch (error: any) {
+    console.error(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+  }
+};
+
+export {
+  getAllArtists,
+  getArtistByName,
+  addArtist,
+  deleteArtist,
+  updateArtist,
+};
