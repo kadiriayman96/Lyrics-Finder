@@ -25,7 +25,7 @@ export const newsletter = async (req: Request, res: Response) => {
     console.log("env: SMTP_pass ", process.env.SMTP_pass);
 
     const mailOptions = {
-      from: "apprenant3@talents4startups.com",
+      from: "apprenant.apprenant4@talents4starups.com",
       to: email, 
       subject: "Découvrez les dernières nouveautés de notre restaurant !",
       text: "merhba bik 3andna 🎂",
