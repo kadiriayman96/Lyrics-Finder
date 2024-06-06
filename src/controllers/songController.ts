@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import Song from "../models/song";
+import Artist from "../models/artist"; // Import Artist model
 import { Request, Response } from "express";
 import {
   BadRequestError,
@@ -7,10 +8,14 @@ import {
   NotFoundError,
   ValidationError,
 } from "../errors/index";
+import { CustomRequest } from "../middlewares/verifyToken";
 
 const getAllSongs = async (req: Request, res: Response) => {
   try {
-    const listSongs = await Song.find();
+    const listSongs = await Song.find().populate(
+      "singer",
+      "firstName lastName"
+    ); // Populate singer details
     if (!listSongs || listSongs.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
         error: new NotFoundError("At least one song is required !!").message,
@@ -29,7 +34,10 @@ const getAllSongs = async (req: Request, res: Response) => {
 const getSongByTitle = async (req: Request, res: Response) => {
   try {
     const { title } = req.params;
-    const song = await Song.find({ title: new RegExp(title, "i") });
+    const song = await Song.find({ title: new RegExp(title, "i") }).populate(
+      "singer",
+      "firstName lastName"
+    );
     if (!song || song.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
         error: new NotFoundError("Song not found !!").message,
@@ -45,7 +53,14 @@ const getSongByTitle = async (req: Request, res: Response) => {
   }
 };
 
-const addSong = async (req: Request, res: Response) => {
+const addSong = async (req: CustomRequest, res: Response) => {
+  const user = req.user;
+  if (!user || !user.isAdmin) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      error: new BadRequestError("Unauthorized access! Only admins can access")
+        .message,
+    });
+  }
   try {
     const { genre, title, recordedDate, lyrics, singer } = req.body;
 
@@ -54,6 +69,15 @@ const addSong = async (req: Request, res: Response) => {
         error: new ValidationError("All fields are required !!").message,
       });
     }
+
+    // Ensure the singer (Artist) exists
+    const artistExists = await Artist.findById(singer);
+    if (!artistExists) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        error: new NotFoundError("Singer (Artist) not found !!").message,
+      });
+    }
+
     const newSong = await Song.create({
       genre,
       title,
@@ -72,7 +96,14 @@ const addSong = async (req: Request, res: Response) => {
   }
 };
 
-const deleteSong = async (req: Request, res: Response) => {
+const deleteSong = async (req: CustomRequest, res: Response) => {
+  const user = req.user;
+  if (!user || !user.isAdmin) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      error: new BadRequestError("Unauthorized access! Only admins can access")
+        .message,
+    });
+  }
   try {
     const { _id } = req.params;
     const song = await Song.findByIdAndDelete(_id);
@@ -92,7 +123,14 @@ const deleteSong = async (req: Request, res: Response) => {
   }
 };
 
-const updateSong = async (req: Request, res: Response) => {
+const updateSong = async (req: CustomRequest, res: Response) => {
+  const user = req.user;
+  if (!user || !user.isAdmin) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      error: new BadRequestError("Unauthorized access! Only admins can access")
+        .message,
+    });
+  }
   try {
     const { _id } = req.params;
     const { genre, title, recordedDate, lyrics, singer } = req.body;
@@ -104,13 +142,23 @@ const updateSong = async (req: Request, res: Response) => {
     const existingSong = await Song.findById(_id);
     if (!existingSong) {
       return res.status(StatusCodes.NOT_FOUND).json({
-        error: new NotFoundError("Artist not found !!").message,
+        error: new NotFoundError("Song not found !!").message,
       });
     }
     if (!genre && !title && !recordedDate && !lyrics && !singer) {
       return res.status(StatusCodes.CONFLICT).json({
         error: new ValidationError("Fields are required !!").message,
       });
+    }
+
+    // Ensure the singer (Artist) exists
+    if (singer) {
+      const artistExists = await Artist.findById(singer);
+      if (!artistExists) {
+        return res.status(StatusCodes.NOT_FOUND).json({
+          error: new NotFoundError("Singer (Artist) not found !!").message,
+        });
+      }
     }
 
     const updatedSong = await Song.findByIdAndUpdate(

@@ -1,11 +1,11 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose";
 
 interface Song extends Document {
   genre: string;
   title: string;
   recordedDate: Date;
   lyrics: string;
-  singer: string;
+  singer: Types.ObjectId; // This ensures the type is correctly set as ObjectId
 }
 
 const songSchema = new Schema<Song>({
@@ -13,7 +13,7 @@ const songSchema = new Schema<Song>({
   title: { type: String, required: true },
   recordedDate: { type: Date, required: true },
   lyrics: { type: String, required: true },
-  singer: { type: String, required: true },
+  singer: { type: Schema.Types.ObjectId, ref: "Artist", required: true }, // Reference to Artist
 });
 
 export default model<Song>("Song", songSchema);

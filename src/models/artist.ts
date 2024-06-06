@@ -1,4 +1,4 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, Types } from "mongoose";
 
 interface Artist extends Document {
   firstName: string;
@@ -8,6 +8,7 @@ interface Artist extends Document {
   bornDate: Date;
   birthCity: string;
   diedDate?: Date;
+  songs?: Types.ObjectId[];
 }
 
 const artistSchema = new Schema<Artist>({
@@ -20,4 +21,15 @@ const artistSchema = new Schema<Artist>({
   diedDate: { type: Date },
 });
 
-export default model<Artist>('Artist', artistSchema);
+// Define virtual field for songs
+artistSchema.virtual("songs", {
+  ref: "Song",
+  localField: "_id",
+  foreignField: "singer",
+});
+
+// Ensure virtual fields are serialized
+artistSchema.set("toObject", { virtuals: true });
+artistSchema.set("toJSON", { virtuals: true });
+
+export default model<Artist>("Artist", artistSchema);
