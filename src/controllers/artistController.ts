@@ -10,6 +10,7 @@ import {
   ValidationError,
 } from "../errors/index";
 import deleteImage from "../utils/cloudinaryImageDelete";
+import { CustomRequest } from "../middlewares/verifyToken";
 
 dotenv.config();
 
@@ -23,7 +24,8 @@ cloudinary.v2.config({
 
 const getAllArtists = async (req: Request, res: Response) => {
   try {
-    const listArtists = await Artist.find();
+    const listArtists = await Artist.find().populate("songs");
+
     if (!listArtists || listArtists.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
         error: new NotFoundError("At least one artist is required !!").message,
@@ -55,19 +57,22 @@ const getArtistByName = async (req: Request, res: Response) => {
           { firstName: new RegExp(firstName, "i") },
           { lastName: new RegExp(lastName, "i") },
         ],
-      });
+      }).populate("songs");
     } else if (firstName) {
-      artist = await Artist.find({ firstName: new RegExp(firstName, "i") });
+      artist = await Artist.find({
+        firstName: new RegExp(firstName, "i"),
+      }).populate("songs");
     } else if (lastName) {
-      artist = await Artist.find({ lastName: new RegExp(lastName, "i") });
+      artist = await Artist.find({
+        lastName: new RegExp(lastName, "i"),
+      }).populate("songs");
     }
 
-    if (!artist) {
+    if (!artist || artist.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
         error: new NotFoundError("Artist not found !!").message,
       });
     }
-
     return res.status(StatusCodes.OK).json(artist);
   } catch (error: any) {
     console.error(error);
@@ -77,7 +82,14 @@ const getArtistByName = async (req: Request, res: Response) => {
   }
 };
 
-const addArtist = async (req: Request, res: Response) => {
+const addArtist = async (req: CustomRequest, res: Response) => {
+  const user = req.user;
+  if (!user || !user.isAdmin) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      error: new BadRequestError("Unauthorized access! Only admins can access")
+        .message,
+    });
+  }
   try {
     let { firstName, lastName, genre, bornDate, birthCity, diedDate } =
       req.body;
@@ -117,7 +129,14 @@ const addArtist = async (req: Request, res: Response) => {
   }
 };
 
-const deleteArtist = async (req: Request, res: Response) => {
+const deleteArtist = async (req: CustomRequest, res: Response) => {
+  const user = req.user;
+  if (!user || !user.isAdmin) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      error: new BadRequestError("Unauthorized access! Only admins can access")
+        .message,
+    });
+  }
   try {
     const { _id } = req.params;
     const artist = await Artist.findByIdAndDelete(_id);
@@ -136,7 +155,14 @@ const deleteArtist = async (req: Request, res: Response) => {
   }
 };
 
-const updateArtist = async (req: Request, res: Response) => {
+const updateArtist = async (req: CustomRequest, res: Response) => {
+  const user = req.user;
+  if (!user || !user.isAdmin) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+      error: new BadRequestError("Unauthorized access! Only admins can access")
+        .message,
+    });
+  }
   try {
     const { _id } = req.params;
     const { firstName, lastName, genre, bornDate, birthCity, diedDate } =
