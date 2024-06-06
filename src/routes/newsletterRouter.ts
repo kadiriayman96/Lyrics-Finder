@@ -1,11 +1,9 @@
 import { Router } from "express";
-import { newsletter } from "../newsletter/mailController";
-import { unsubscribe } from "../newsletter/unsubscribe";
+import { newsletter, unsubscribe } from "../controllers/mailController";
 
 const routerMail = Router();
 
-routerMail.post("/newsletter", newsletter);
-
+routerMail.post("/", newsletter);
 routerMail.post("/unsubscribe", unsubscribe);
 
 export { routerMail };
