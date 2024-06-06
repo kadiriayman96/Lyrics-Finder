@@ -6,6 +6,10 @@ import { routerArtist } from "../src/routes/artistRouter";
 import { routerSong } from "../src/routes/songRouter";
 import { routerAuth } from "../src/routes/authRouter";
 import { routerUsers } from "../src/routes/usersRouter";
+import { routerMail } from "../src/routes/newsletterRouter";
+import { routerPassword } from "../src/routes/passwordRouter";
+import sendNewsletterCronJob from "../src/utils/cronJob";
+import cron from "node-cron";
 
 dotenv.config();
 
@@ -25,6 +29,8 @@ app.use("/", routerAuth);
 app.use("/artists", routerArtist);
 app.use("/songs", routerSong);
 app.use("/users", routerUsers);
+app.use("/newsletter", routerMail);
+app.use("/password", routerPassword);
 
 //error router 404
 app.use((req, res, next) => {
@@ -32,6 +38,9 @@ app.use((req, res, next) => {
     .status(StatusCodes.NOT_FOUND)
     .json({ error: "The route you are looking for does not exist !!" });
 });
+
+// Cron Job
+cron.schedule("0 0 * * 0", sendNewsletterCronJob); // Envoi de la newsletter chaque semaine le dimanche à minuit
 
 // Start the server
 app.listen(PORT, () => {
