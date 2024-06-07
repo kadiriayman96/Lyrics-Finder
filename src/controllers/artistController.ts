@@ -10,7 +10,6 @@ import {
   ValidationError,
 } from "../errors/index";
 import deleteImage from "../utils/cloudinaryImageDelete";
-import { CustomRequest } from "../middlewares/verifyToken";
 
 dotenv.config();
 
@@ -82,7 +81,7 @@ const getArtistByName = async (req: Request, res: Response) => {
   }
 };
 
-const addArtist = async (req: CustomRequest, res: Response) => {
+const addArtist = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -129,7 +128,7 @@ const addArtist = async (req: CustomRequest, res: Response) => {
   }
 };
 
-const deleteArtist = async (req: CustomRequest, res: Response) => {
+const deleteArtist = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -155,7 +154,7 @@ const deleteArtist = async (req: CustomRequest, res: Response) => {
   }
 };
 
-const updateArtist = async (req: CustomRequest, res: Response) => {
+const updateArtist = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({

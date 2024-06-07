@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { body, validationResult } from "express-validator";
 
-const validateAddSong = [
+const validateSong = [
   body("genre")
     .isLength({ min: 3 })
     .withMessage("Genre must be at least 3 characters")
@@ -10,9 +10,11 @@ const validateAddSong = [
   body("title")
     .isLength({ min: 2 })
     .withMessage("Title must be at least 2 characters")
-    .isAlpha()
-    .withMessage("Title must contain only letters"),
-  body("recordedDate").isISO8601().withMessage("Date must be a valid format"),
+    .isString()
+    .withMessage("Title must be valid"),
+  body("recordedDate")
+    .isISO8601()
+    .withMessage("Recorded date must be a valid date in YYYY-MM-DD format"),
   body("lyrics")
     .isLength({ min: 100 })
     .withMessage("Lyrics must be at least 100 characters"),
@@ -32,4 +34,4 @@ const validateAddSong = [
   },
 ];
 
-export { validateAddSong };
+export { validateSong };

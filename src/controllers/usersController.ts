@@ -7,9 +7,8 @@ import {
   NotFoundError,
   ValidationError,
 } from "../errors/index";
-import { CustomRequest } from "../middlewares/verifyToken";
 
-const getAllUsers = async (req: CustomRequest, res: Response) => {
+const getAllUsers = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -34,7 +33,7 @@ const getAllUsers = async (req: CustomRequest, res: Response) => {
     });
   }
 };
-const updateUserRole = async (req: CustomRequest, res: Response) => {
+const updateUserRole = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -76,7 +75,7 @@ const updateUserRole = async (req: CustomRequest, res: Response) => {
     });
   }
 };
-const deleteUser = async (req: CustomRequest, res: Response) => {
+const deleteUser = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({

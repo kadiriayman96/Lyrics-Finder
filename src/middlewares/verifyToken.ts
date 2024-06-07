@@ -4,15 +4,25 @@ import { UnauthorizedError } from "../errors/index";
 import { StatusCodes } from "http-status-codes";
 import User, { IUser } from "../models/user";
 
-interface CustomRequest extends Request {
-  user?: IUser;
-  token?: string;
+declare global {
+  interface UserData {
+    firstName: String;
+    lastName: String;
+    email: String;
+    password: String;
+    isAdmin: Boolean;
+  }
+  namespace Express {
+    interface Request {
+      user?: UserData;
+    }
+  }
 }
 interface JwtPayload {
   user: IUser;
 }
 
-function verifyToken(req: CustomRequest, res: Response, next: NextFunction) {
+function verifyToken(req: Request, res: Response, next: NextFunction) {
   try {
     const { authorization } = req.headers;
     if (!authorization) {
@@ -34,4 +44,4 @@ function verifyToken(req: CustomRequest, res: Response, next: NextFunction) {
   }
 }
 
-export { verifyToken, CustomRequest };
+export { verifyToken };
