@@ -46,3 +46,5 @@ cron.schedule("0 0 * * 0", sendNewsletterCronJob); // Envoi de la newsletter cha
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
+
+// SALINA <3
