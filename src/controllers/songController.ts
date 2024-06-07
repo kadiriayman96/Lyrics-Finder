@@ -8,7 +8,6 @@ import {
   NotFoundError,
   ValidationError,
 } from "../errors/index";
-import { CustomRequest } from "../middlewares/verifyToken";
 
 const getAllSongs = async (req: Request, res: Response) => {
   try {
@@ -53,7 +52,7 @@ const getSongByTitle = async (req: Request, res: Response) => {
   }
 };
 
-const addSong = async (req: CustomRequest, res: Response) => {
+const addSong = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -96,7 +95,7 @@ const addSong = async (req: CustomRequest, res: Response) => {
   }
 };
 
-const deleteSong = async (req: CustomRequest, res: Response) => {
+const deleteSong = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -123,7 +122,7 @@ const deleteSong = async (req: CustomRequest, res: Response) => {
   }
 };
 
-const updateSong = async (req: CustomRequest, res: Response) => {
+const updateSong = async (req: Request, res: Response) => {
   const user = req.user;
   if (!user || !user.isAdmin) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
