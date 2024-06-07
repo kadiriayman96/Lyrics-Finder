@@ -3,6 +3,6 @@ import { updatePassword } from "../controllers/passwordController";
 
 const routerPassword = Router();
 
-routerPassword.post("/password", updatePassword);
+routerPassword.post("/", updatePassword);
 
 export { routerPassword };
