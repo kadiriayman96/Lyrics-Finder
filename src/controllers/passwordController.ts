@@ -26,7 +26,6 @@ const updatePassword = async (
     }
 
     const token = authHeader.split(" ")[1];
-    console.log("Token:", token);
 
     const decodedToken: any = jwt.verify(token, "user_key"); // Remplacez 'user_key' par la clé secrète utilisée pour signer le token JWT
 

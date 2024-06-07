@@ -30,7 +30,7 @@ app.use("/artists", routerArtist);
 app.use("/songs", routerSong);
 app.use("/users", routerUsers);
 app.use("/newsletter", routerMail);
-app.use("/password", routerPassword);
+app.use("/resetPassword", routerPassword);
 
 //error router 404
 app.use((req, res, next) => {
