@@ -1,0 +1,548 @@
+{
+  "info": {
+    "_postman_id": "56b3d85a-22a8-4535-8e0e-f7aba8a90da3",
+    "name": "Lyrics Finder",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+    "_exporter_id": "34593444",
+    "_collection_link": "https://africagram.postman.co/workspace/Lyrics-Finder~9660d921-6531-460f-8249-2dda1b337a4c/collection/34593444-56b3d85a-22a8-4535-8e0e-f7aba8a90da3?action=share&source=collection_link&creator=34593444"
+  },
+  "item": [
+    {
+      "name": "Artists",
+      "item": [
+        {
+          "name": "Get All Artists",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjJkZjI5MGU0MDY3YWM1NjFiNWVmNiIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLllhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJEdwTWowMjBvcU90TER0SWlYbkNSdC5rajd6UFM4NEtPa1IvRVh0bm1QandUNFBSc3RrZS5PIiwiaXNBZG1pbiI6dHJ1ZSwiX192IjowfSwiaWF0IjoxNzE3NzU5OTg2LCJleHAiOjE3MTgwMTkxODZ9.0lkII-w3epMaiZV9t3AtWrxCScKuZ9035DqKwDzd9Lc"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3200/artists/",
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Artists By Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjA3ZWFiOWY3ZTNkZjBlODdkODI1ZCIsImZpcnN0TmFtZSI6IkF5bWFuIiwibGFzdE5hbWUiOiJLYWRpcmkiLCJlbWFpbCI6ImF5bWFuLmthZGlyaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtakxEYkJDNC9HdXZUQUhmQ1RKSlJPLnU1aC9hRno4MXpiaGN0Skg5SEFsNS5qcVVFYnQ4ZSIsImlzQWRtaW4iOnRydWUsIl9fdiI6MH0sImlhdCI6MTcxNzY4MTc0OSwiZXhwIjoxNzE3Njg1MzQ5fQ.2zBswZUowueFlBhx5f4OOATa4sBmMDNm8htQO22vjhs"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3200/artists/Em/Ouii",
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Add Artist",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjA3ZWFiOWY3ZTNkZjBlODdkODI1ZCIsImZpcnN0TmFtZSI6IkF5bWFuIiwibGFzdE5hbWUiOiJLYWRpcmkiLCJlbWFpbCI6ImF5bWFuLmthZGlyaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtakxEYkJDNC9HdXZUQUhmQ1RKSlJPLnU1aC9hRno4MXpiaGN0Skg5SEFsNS5qcVVFYnQ4ZSIsImlzQWRtaW4iOnRydWUsIl9fdiI6MH0sImlhdCI6MTcxNzY3Nzc5MywiZXhwIjoxNzE3NjgxMzkzfQ.vl-DArN8H3kJAceYj9DN9Eqg_s7hccrmlrCTXcH2vB4"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "firstName",
+                  "value": "Eminem",
+                  "type": "text"
+                },
+                {
+                  "key": "lastName",
+                  "value": "Marshall Bruce Mathers",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rap",
+                  "type": "text"
+                },
+                {
+                  "key": "birthCity",
+                  "value": "Detroit",
+                  "type": "text"
+                },
+                {
+                  "key": "bornDate",
+                  "value": "1972-10-17",
+                  "description": "// YYYY-MM-DD",
+                  "type": "text"
+                },
+                {
+                  "key": "diedDate",
+                  "value": "",
+                  "description": "// YYYY-MM-DD",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/Mugiwara/Desktop/Singers/em.jpg"
+                }
+              ]
+            },
+            "url": "http://localhost:3200/artists/addArtist",
+            "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Artist",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjA3ZWFiOWY3ZTNkZjBlODdkODI1ZCIsImZpcnN0TmFtZSI6IkF5bWFuIiwibGFzdE5hbWUiOiJLYWRpcmkiLCJlbWFpbCI6ImF5bWFuLmthZGlyaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtakxEYkJDNC9HdXZUQUhmQ1RKSlJPLnU1aC9hRno4MXpiaGN0Skg5SEFsNS5qcVVFYnQ4ZSIsImlzQWRtaW4iOmZhbHNlLCJfX3YiOjB9LCJpYXQiOjE3MTc2MTcyMzcsImV4cCI6MTcxNzYyMDgzN30.Lnh65tc0M-RjX5cIUJZzMp5AWXIj0xFAHyWxwfoB7Bk"
+              }
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "firstName",
+                  "value": "Tarik Ademo",
+                  "type": "text"
+                },
+                {
+                  "key": "lastName",
+                  "value": "Andrieu",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rap",
+                  "type": "text"
+                },
+                {
+                  "key": "birthCity",
+                  "value": "Corbeil-Essonnes",
+                  "type": "text"
+                },
+                {
+                  "key": "bornDate",
+                  "value": "1986-12-26",
+                  "description": "// YYYY-MM-DD",
+                  "type": "text"
+                },
+                {
+                  "key": "diedDate",
+                  "value": "",
+                  "description": "// YYYY-MM-DD",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/Mugiwara/Desktop/Singers/ademo-un-retour-en-solo-ou-avec-pnl-video-649.jpg"
+                }
+              ]
+            },
+            "url": "http://localhost:3200/artists/updateArtist/665f466630d913232f00fb04",
+            "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Artist",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjA3ZWFiOWY3ZTNkZjBlODdkODI1ZCIsImZpcnN0TmFtZSI6IkF5bWFuIiwibGFzdE5hbWUiOiJLYWRpcmkiLCJlbWFpbCI6ImF5bWFuLmthZGlyaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtakxEYkJDNC9HdXZUQUhmQ1RKSlJPLnU1aC9hRno4MXpiaGN0Skg5SEFsNS5qcVVFYnQ4ZSIsImlzQWRtaW4iOnRydWUsIl9fdiI6MH0sImlhdCI6MTcxNzY3Nzc5MywiZXhwIjoxNzE3NjgxMzkzfQ.vl-DArN8H3kJAceYj9DN9Eqg_s7hccrmlrCTXcH2vB4"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:3200/artists/deleteArtist/6661b33e494685b83636176e",
+            "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Yasser\",\r\n    \"lastName\": \"Mastaoui\",\r\n    \"email\": \"mastaoui.Ya@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/register"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"mastaoui.Ya@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/login"
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjJkZjI5MGU0MDY3YWM1NjFiNWVmNiIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLllhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJHdTZWl5WkR3MHA0amluWWlaLy5US3VRYXhkUzdkdnRJaWFDanMvbVRlSlMuZlhPZ3BwVHNLIiwiaXNBZG1pbiI6ZmFsc2UsIl9fdiI6MH0sImlhdCI6MTcxNzc1NTcwNSwiZXhwIjoxNzE4MDE0OTA1fQ.qITCVY21KAhe5CSoAg1Dvlv1IGId-65AAWsgnCOc63Y"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"newPassword\":\"1234567890\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/resetPassword"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboard Admin",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjFmNDM0NTlkNmZmNWM0ZmIxMzMwOSIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLnlhc3NlckBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRDME5Hcy5uWE5CMHpyTzFjRGxTZHl1MmhMdElGM3FsdmI5dVFDekNOc2RxWGFLLk5BcU5jZSIsImlzQWRtaW4iOmZhbHNlLCJfX3YiOjB9LCJpYXQiOjE3MTc2OTU1NDcsImV4cCI6MTcxNzk1NDc0N30.k97fDNCkMcQIE0RnnAvdHM9vRD5Bt86MrOKLWvC7efM"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3200/users/"
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Role",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjA3ZWFiOWY3ZTNkZjBlODdkODI1ZCIsImZpcnN0TmFtZSI6IkF5bWFuIiwibGFzdE5hbWUiOiJLYWRpcmkiLCJlbWFpbCI6ImF5bWFuLmthZGlyaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtakxEYkJDNC9HdXZUQUhmQ1RKSlJPLnU1aC9hRno4MXpiaGN0Skg5SEFsNS5qcVVFYnQ4ZSIsImlzQWRtaW4iOnRydWUsIl9fdiI6MH0sImlhdCI6MTcxNzY4MTc0OSwiZXhwIjoxNzE3Njg1MzQ5fQ.2zBswZUowueFlBhx5f4OOATa4sBmMDNm8htQO22vjhs"
+              }
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"isAdmin\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/users/updateUserRole/6661c244220c54f5da600977"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjA3ZWFiOWY3ZTNkZjBlODdkODI1ZCIsImZpcnN0TmFtZSI6IkF5bWFuIiwibGFzdE5hbWUiOiJLYWRpcmkiLCJlbWFpbCI6ImF5bWFuLmthZGlyaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRtakxEYkJDNC9HdXZUQUhmQ1RKSlJPLnU1aC9hRno4MXpiaGN0Skg5SEFsNS5qcVVFYnQ4ZSIsImlzQWRtaW4iOnRydWUsIl9fdiI6MH0sImlhdCI6MTcxNzY4MTc0OSwiZXhwIjoxNzE3Njg1MzQ5fQ.2zBswZUowueFlBhx5f4OOATa4sBmMDNm8htQO22vjhs"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"isAdmin\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/users/deleteUser/6661c244220c54f5da600977"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Newsletter",
+      "item": [
+        {
+          "name": "Subscribe",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjFmNDM0NTlkNmZmNWM0ZmIxMzMwOSIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLnlhc3NlckBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRDME5Hcy5uWE5CMHpyTzFjRGxTZHl1MmhMdElGM3FsdmI5dVFDekNOc2RxWGFLLk5BcU5jZSIsImlzQWRtaW4iOmZhbHNlLCJfX3YiOjB9LCJpYXQiOjE3MTc2OTU1NDcsImV4cCI6MTcxNzk1NDc0N30.k97fDNCkMcQIE0RnnAvdHM9vRD5Bt86MrOKLWvC7efM"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"workadiri@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/newsletter/"
+          },
+          "response": []
+        },
+        {
+          "name": "UnSubscribe",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjFmNDM0NTlkNmZmNWM0ZmIxMzMwOSIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLnlhc3NlckBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRDME5Hcy5uWE5CMHpyTzFjRGxTZHl1MmhMdElGM3FsdmI5dVFDekNOc2RxWGFLLk5BcU5jZSIsImlzQWRtaW4iOmZhbHNlLCJfX3YiOjB9LCJpYXQiOjE3MTc2OTU1NDcsImV4cCI6MTcxNzk1NDc0N30.k97fDNCkMcQIE0RnnAvdHM9vRD5Bt86MrOKLWvC7efM"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"workadiri@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:3200/newsletter/unsubscribe"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Songs",
+      "item": [
+        {
+          "name": "Get All Songs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjJkZjI5MGU0MDY3YWM1NjFiNWVmNiIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLllhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJEdwTWowMjBvcU90TER0SWlYbkNSdC5rajd6UFM4NEtPa1IvRVh0bm1QandUNFBSc3RrZS5PIiwiaXNBZG1pbiI6ZmFsc2UsIl9fdiI6MH0sImlhdCI6MTcxNzc1OTI0MiwiZXhwIjoxNzE4MDE4NDQyfQ.zk-pDURpUIO3jOnGYoFsBzAN74SbsJjDn_kZL3DE7gU"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3200/songs"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Songs By Title",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3200/songs/Sibérie"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Song",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY2NjJkZjI5MGU0MDY3YWM1NjFiNWVmNiIsImZpcnN0TmFtZSI6Illhc3NlciIsImxhc3ROYW1lIjoiTWFzdGFvdWkiLCJlbWFpbCI6Im1hc3Rhb3VpLllhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJEdwTWowMjBvcU90TER0SWlYbkNSdC5rajd6UFM4NEtPa1IvRVh0bm1QandUNFBSc3RrZS5PIiwiaXNBZG1pbiI6dHJ1ZSwiX192IjowfSwiaWF0IjoxNzE3NzU5OTg2LCJleHAiOjE3MTgwMTkxODZ9.0lkII-w3epMaiZV9t3AtWrxCScKuZ9035DqKwDzd9Lc"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "genre",
+                  "value": "Rap",
+                  "type": "text"
+                },
+                {
+                  "key": "title",
+                  "value": "Lose Yourself",
+                  "type": "text"
+                },
+                {
+                  "key": "recordedDate",
+                  "value": "2002-10-28",
+                  "description": "// YYYY-MM-DD",
+                  "type": "text"
+                },
+                {
+                  "key": "lyrics",
+                  "value": "[Intro]\nLook, if you had one shot or one opportunity\nTo seize everything you ever wanted in one moment\nWould you capture it or just let it slip?\nYo\n\n[Verse 1]\nHis palms are sweaty, knees weak, arms are heavy\nThere's vomit on his sweater already, mom's spaghetti\nHe's nervous, but on the surface, he looks calm and ready\nTo drop bombs, but he keeps on forgetting\nWhat he wrote down, the whole crowd goes so loud\nHe opens his mouth, but the words won't come out\nHe's chokin', how? Everybody's jokin' now\nThe clock's run out, time's up, over, blaow\nSnap back to reality, ope, there goes gravity\nOpe, there goes Rabbit, he choked, he's so mad\nBut he won't give up that easy, no, he won't have it\nHe knows his whole back's to these ropes, it don't matter\nHe's dope, he knows that, but he's broke, he's so stagnant\nHe knows when he goes back to this mobile home, that's when it's\nBack to the lab again, yo, this old rhapsody\nBetter go capture this moment and hope it don't pass him\n\n[Chorus]\nYou better lose yourself in the music\nThe moment, you own it, you better never let it go (Go)\nYou only get one shot, do not miss your chance to blow\nThis opportunity comes once in a lifetime, yo\nYou better lose yourself in the music\nThe moment, you own it, you better never let it go (Go)\nYou only get one shot, do not miss your chance to blow\nThis opportunity comes once in a lifetime, yo\nYou better\nSee upcoming rap shows\nGet tickets for your favorite artists\nYou might also like\nFamily Matters\nDrake\nSo Long, London\nTaylor Swift\nSay Don’t Go (Taylor’s Version) [From The Vault]\nTaylor Swift\n[Verse 2]\nHis soul's escaping through this hole that is gaping\nThis world is mine for the taking, make me king\nAs we move toward a new world order\nA normal life is boring, but superstardom's\nClose to post-mortem, it only grows harder\nHomie grows hotter, he blows, it's all over\nThese hoes is all on him, coast-to-coast shows\nHe's known as the Globetrotter, lonely roads\nGod only knows he's grown farther from home, he's no father\nHe goes home and barely knows his own daughter\nBut hold your nose 'cause here goes the cold water\nThese hoes don't want him no mo', he's cold product\nThey moved on to the next schmoe who flows\nHe nose-dove and sold nada, and so the soap opera\nIs told, it unfolds, I suppose it's old, partner\nBut the beat goes on, da-da-dom, da-dom, dah-dah-dah-dah\n\n[Chorus]\nYou better lose yourself in the music\nThe moment, you own it, you better never let it go (Go)\nYou only get one shot, do not miss your chance to blow\nThis opportunity comes once in a lifetime, yo\nYou better lose yourself in the music\nThe moment, you own it, you better never let it go (Go)\nYou only get one shot, do not miss your chance to blow\nThis opportunity comes once in a lifetime, yo\nYou better\n[Verse 3]\nNo more games, I'ma change what you call rage\nTear this motherfuckin' roof off like two dogs caged\nI was playin' in the beginning, the mood all changed\nI've been chewed up and spit out and booed off stage\nBut I kept rhymin' and stepped right in the next cypher\nBest believe somebody's payin' the Pied Piper\nAll the pain inside amplified by the\nFact that I can't get by with my nine-to-\nFive and I can't provide the right type of life for my family\n'Cause, man, these goddamn food stamps don't buy diapers\nAnd there's no movie, there's no Mekhi Phifer, this is my life\nAnd these times are so hard, and it's gettin' even harder\nTryna feed and water my seed, plus teeter-totter\nCaught up between bein' a father and a prima donna\nBaby-mama drama, screamin' on her, too much for me to wanna\nStay in one spot, another day of monotony's gotten me\nTo the point I'm like a snail, I've got\nTo formulate a plot or end up in jail or shot\nSuccess is my only motherfuckin' option, failure's not\nMom, I love you, but this trailer's got\nTo go, I cannot grow old in Salem's Lot\nSo here I go, it's my shot; feet, fail me not\nThis may be the only opportunity that I got\n\n[Chorus]\nYou better lose yourself in the music\nThe moment, you own it, you better never let it go (Go)\nYou only get one shot, do not miss your chance to blow\nThis opportunity comes once in a lifetime, yo\nYou better lose yourself in the music\nThe moment, you own it, you better never let it go (Go)\nYou only get one shot, do not miss your chance to blow\nThis opportunity comes once in a lifetime, yo\nYou better\n[Outro]\nYou can do anything you set your mind to, man",
+                  "type": "text"
+                },
+                {
+                  "key": "singer",
+                  "value": "6661b480f068d0efd1f3ba57",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "http://localhost:3200/songs/addSong"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Song",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "genre",
+                  "value": "Cloud Rap",
+                  "type": "text"
+                },
+                {
+                  "key": "title",
+                  "value": "Sibérie",
+                  "type": "text"
+                },
+                {
+                  "key": "recordedDate",
+                  "value": "2019-06-28",
+                  "description": "// YYYY-MM-DD",
+                  "type": "text"
+                },
+                {
+                  "key": "lyrics",
+                  "value": "[Paroles de \"Sibérie\"]\n[Couplet 1 : Ademo]\nRien ne sert d'effleurer ma peau : ma peau, c’est la Sibérie\nSi mon cœur avait un visage, tu l'appellerais \"Seal\" ou \"Ribéry\"\nJ'traîne dans c’monde et j'vois ton gloss qui traîne sur des bites\nPrends la mienne, épargne-moi d'écouter la merde qu'tu débites\nSi le cœur devient noir, c'est la faute à tes fautes qui perdurent dans la lumière d'mon écho\nJ'imagine que tu penses que j'suis l’mal de par mes états d’âme, tu captes rien sous l'rideau\nSi tout ça s’résume à raconter ma haine, priez pour qu'un jour, j'change de thème\nEt le jour où j'parlerai d’amour, peut-être que j'me dirai que ça en valait la peine\nJ'ai vu à peu près quatre cents facettes de l'être humain, aussi noir qu'il soit\nLa ville est grande, j'veux juste faire un tour, libre comme Onizuka\nLa rose est grise, le drapeau est rouge, cheveux poussent, le temps rigole\nQuoi, J'traîne trop ? Attends-moi, le passé m'passe la camisole\nJ'ai des pêchés qui passent à la compta', mon côté haram reste toujours indompté\nJ'suis différent, j'ppe-ra avec la ginga, dans vingt ans, tu m'écouteras, tu diras \"Pelé\"\n[Refrain : Ademo & N.O.S]\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nSee upcoming rap shows\nGet tickets for your favorite artists\nYou might also like\nNot Like Us\nKendrick Lamar\n​meet the grahams\nKendrick Lamar\nFamily Matters\nDrake\n[Couplet 2 : N.O.S]\nDu mal avec leur monde qu'on ne côtoie pas, juste venu pour les baiser (bang, bang, bang)\nIls pourraient pas comprendre l'ambition d'tout niquer sans l'expliquer (tous les niquer)\nEt plus j'm'écarte d'la misère, plus j'sens qu'la vérité n'en est pas loin\nEt même si tu m'aimes, des fois, j't'en veux d'pas avoir été là quand j'étais rien (casse-toi de là)\nJ'veux vivre comme un lion sans avoir connu les règles, en ayant connu mon cœur (bang, bang, bang)\nEt ceux qui préfèrent les chèques, la victoire accompagnée d'chaînes\nJ'suis le même en moins pire, le même en pire, ça dépend d'la douleur\nIls ont détruit nos tours, détruiront pas l'empire qu'on a construit dans nos cœurs\nDes rêves trop égoïstes pour que j'les vive\nMoi, j'suis trop différent pour savoir qui j'suis\nNulle part où j'me sens chez moi donc j'passe mon temps à fuir\nÀ traîner ceux que j'aime derrière moi en leur vendant un avenir\nJ'fais plus la différence entre les groupies et les femmes\nEntre ces putains d'hommes et puis les fans\n[Refrain : Ademo & N.O.S]\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nLa Terre tourne, j'me contourne\nJ'vois tout à l'envers, tout à l'envers\nJ'vois tout à l'envers, tout à l'envers",
+                  "type": "text"
+                },
+                {
+                  "key": "singer",
+                  "value": "Ademo & N.O.S",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "http://localhost:3200/songs//updateSong/666053e4f63d222f11dfb15b"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Song",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:3200/songs/deleteSong/6660531640c33cb7d9ac2baf"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
