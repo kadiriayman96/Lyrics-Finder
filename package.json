@@ -7,7 +7,7 @@
     "start": "nodemon src/server.ts"
   },
   "keywords": [],
-  "author": "Ayman Ka & Yasser Mestaoui",
+  "author": "Ayman Ka & Yasser Mestaoui -QLF- à la mognaque",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
